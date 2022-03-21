@@ -8,7 +8,7 @@ export type TCategory = {
   description: string;
 };
 
-type TAddTodoCategoryItem = {
+export type TAddTodoCategoryItem = {
   show: boolean;
   handleClose: () => void;
 };
@@ -50,7 +50,7 @@ const AddTodoCategoryItem: React.FC<TAddTodoCategoryItem> = ({
             onChange={(e) => setCategoryDescription(e.target.value)}
             type="text"
           ></Form.Control>
-          <div className="mt-2 d-flex justify-content-end">
+          <div className="mt-3 d-flex justify-content-end">
             <Button variant="primary" type="submit">
               Dodaj
             </Button>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Container, Stack } from "react-bootstrap";
-import AddTaskItem from "./components/AddTaskItem";
 import AddTodoCategoryItem, {
   TCategory,
 } from "./components/AddTodoCategoryItem";
@@ -8,9 +7,17 @@ import CategoryItemCard from "./components/CategoryItemCard";
 import { useTodoContext } from "./context/TodoContextProvider";
 
 const App: React.FC = () => {
-  const [showAddTodoCategoryItem, setShowAddTodoCategoryItem] = useState(false);
+  const [showAddTodoCategoryItemModal, setShowAddTodoCategoryItemModal] =
+    useState(false);
+  const [showAddTaskItemModal, setShowAddTaskItemModal] = useState(false);
+  // const [addTaskItemModalCatoryId]
 
   const { categories } = useTodoContext();
+
+  // function openAddTaskItemModal(categoryId : string) {
+  //   setShowAddTaskItem(true);
+  //   setAddExpenseModalBudgetId(budgetId);
+  // }
 
   return (
     <>
@@ -18,7 +25,7 @@ const App: React.FC = () => {
         <Stack direction="horizontal" gap={2} className="p-2 mb-4 mt-4">
           <h1 className="me-auto">Lista zadań</h1>
           <Button
-            onClick={() => setShowAddTodoCategoryItem(true)}
+            onClick={() => setShowAddTodoCategoryItemModal(true)}
             variant="primary"
           >
             Dodaj kategorię
@@ -38,16 +45,17 @@ const App: React.FC = () => {
                 key={category.id}
                 categoryName={category.name}
                 categoryDescription={category.description}
+                category={category}
+                // onAddTaskItemClick={() => }
               />
             );
           })}
         </div>
       </Container>
       <AddTodoCategoryItem
-        show={showAddTodoCategoryItem}
-        handleClose={() => setShowAddTodoCategoryItem(false)}
+        show={showAddTodoCategoryItemModal}
+        handleClose={() => setShowAddTodoCategoryItemModal(false)}
       />
-      <AddTaskItem />
     </>
   );
 };
